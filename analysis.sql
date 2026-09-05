@@ -1,5 +1,5 @@
 -- Repeat-Offender Detection Analysis
--- Run against interactions.db (built from interactions.csv)
+-- Run against the interactions table loaded from data/interactions.csv
 --
 -- The narrative these queries build, in order:
 --   1. A naive, top-level view of disconnects (what an aggregate view shows)
