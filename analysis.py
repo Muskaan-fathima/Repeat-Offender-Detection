@@ -4,7 +4,7 @@ analysis.sql, and produces three charts that tell the story:
 
   1. Naive weekly disconnect rate -- looks like noise
   2. Per-agent disconnect counts -- the real signal, once you group by agent
-  3. Repeat-offender rate before vs. after targeted correction
+  3. Flagged-agent disconnect rate before vs. after targeted intervention
 """
 
 import sqlite3
@@ -32,7 +32,7 @@ naive = pd.read_sql_query(
 )
 fig, ax = plt.subplots(figsize=(7, 4))
 ax.plot(naive["week_number"], naive["disconnect_rate_pct"], marker="o", color="#1F3864")
-ax.set_title("Naive View: Overall Weekly Disconnect Rate\n(what random sampling sees)")
+ax.set_title("Naive View: Overall Weekly Disconnect Rate\n(what an aggregate view shows)")
 ax.set_xlabel("Week")
 ax.set_ylabel("Disconnect rate (%)")
 ax.set_ylim(0, max(naive["disconnect_rate_pct"]) + 3)
