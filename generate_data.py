@@ -93,4 +93,4 @@ df.to_csv("data/interactions.csv", index=False)
 
 print(f"Generated {len(df)} interactions across {N_AGENTS} agents, {N_WEEKS} weeks.")
 print(f"Overall disconnect rate: {df['disconnected'].mean():.1%}")
-print(f"Known repeat-offender agents (for validation only): {sorted(REPEAT_OFFENDER_IDS)}")
+print("Synthetic ground truth labels are used for validation only.")
