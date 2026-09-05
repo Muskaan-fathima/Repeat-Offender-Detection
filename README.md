@@ -70,10 +70,8 @@ python analysis.py        # writes charts/ and prints summary tables
 
 ## Why I built this
 
-I led a version of this investigation for real — auditing agent
-disconnects that were being logged against legitimate-sounding reasons
-(power/internet issues) but were actually work avoidance on harder
-cases. The real investigation used random sampling first, which didn't
-surface the pattern; switching to per-agent frequency sampling did. This
-project rebuilds that same reasoning end-to-end with synthetic data, as
-something I could actually share.
+I led an operational investigation at Amazon after the QA team received a high volume of customer complaints and escalations related to customer service agents disconnecting calls while citing various reasons. As the project owner, I investigated whether these were isolated incidents or part of a repeated pattern of work avoidance.
+
+This public project is a reconstruction of the analytical approach I used, recreated with entirely synthetic data and different numbers. It demonstrates how I challenged an initial random-sampling approach, shifted to agent-level analysis to surface repeated patterns, and evaluated the impact of targeted action.
+
+The original investigation used internal data and cannot be shared publicly. All data, numbers, and results in this repository are synthetic and do not represent Amazon's actual data, metrics, or findings.
