@@ -2,14 +2,14 @@
 -- Run against interactions.db (built from interactions.csv)
 --
 -- The narrative these queries build, in order:
---   1. A naive, top-level view of disconnects (what random sampling sees)
+--   1. A naive, top-level view of disconnects (what an aggregate view shows)
 --   2. Why that view hides the real problem
 --   3. A per-agent, frequency-based view that surfaces repeat offenders
 --   4. Whether targeted correction actually worked
 
 -- ============================================================
 -- 1. NAIVE VIEW: overall weekly disconnect rate
--- This is what you'd see if you only sampled interactions at random
+-- This is what you'd see if you only looked at overall weekly rates
 -- without grouping by agent. It looks like noise -- nothing actionable.
 -- ============================================================
 SELECT
@@ -56,7 +56,9 @@ ORDER BY total_disconnects DESC;
 -- ============================================================
 -- 4. REPEAT-OFFENDER FLAG: agents exceeding a weekly threshold
 -- Flag any agent who disconnects 3+ times in a single week -- this is
--- the rule that separates "had a bad week" from "does this every week."
+-- the rule used to flag cases for further investigation.
+-- Repeated flags across multiple weeks would strengthen the evidence
+-- of a persistent pattern.
 -- ============================================================
 WITH weekly_agent_disconnects AS (
     SELECT
@@ -76,7 +78,7 @@ ORDER BY agent_id, week_number;
 
 
 -- ============================================================
--- 5. IMPACT CHECK: repeat-offender rate before vs. after intervention
+-- 5. IMPACT CHECK: flagged-agent disconnect rate before vs. after intervention 
 -- Weeks 1-4 = before targeted audits began.
 -- Weeks 5-8 = after audits + corrective action began.
 -- ============================================================
